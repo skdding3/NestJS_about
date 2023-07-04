@@ -1,5 +1,6 @@
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -14,7 +15,17 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
       transform: true
     })
-  )
+  );
+
+  const apiOptions = new DocumentBuilder()
+    .setTitle('UI API')
+    .setDescription('API Description for UI API')
+    .setVersion('1.0')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, apiOptions);
+  SwaggerModule.setup('api', app, document);
+
   await app.listen(3000);
 }
 bootstrap();

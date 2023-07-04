@@ -5,7 +5,7 @@ import { Ui } from "./entities/ui.entity";
 
 @Injectable()
 export class UiService {
-  private uis: Ui[] = [];
+  private uis: Ui[] = []
 
 
   create(createUiDto: CreateUiDto) {
